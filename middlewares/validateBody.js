@@ -1,7 +1,7 @@
-const { HttpError } = require("../helpers");
-const { status } = require("../consts");
+const { HttpError } = require('../helpers');
+const { status } = require('../consts');
 
-const validateBody = (schema) => (req, res, next) => {
+const validateBody = schema => (req, res, next) => {
   const { error } = schema.validate(req.body);
 
   if (error) {

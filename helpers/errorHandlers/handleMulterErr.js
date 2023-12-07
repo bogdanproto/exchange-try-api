@@ -1,7 +1,7 @@
-const multer = require("multer");
-const { status } = require("../consts");
+const multer = require('multer');
+const { status } = require('../../consts');
 
-const handleMulterErr = (err) => {
+const handleMulterErr = err => {
   if (err instanceof multer.MulterError) {
     err.status = status.UNSUPPORTED_TYPE.status;
     err.message = err.code;

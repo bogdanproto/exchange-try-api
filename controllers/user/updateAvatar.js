@@ -1,24 +1,29 @@
-const { User } = require("../../models");
-const { decoratorCtrl } = require("../../helpers");
-const { status } = require("../../consts");
-const { handleAvatarFile, uploadAvatarToCloud } = require("../../helpers");
+const { User } = require('../../models');
+const { status } = require('../../consts');
+const {
+  decoratorCtrl,
+  handleAvatarFile,
+  deleteFile,
+  uploadAvatarToCloud,
+} = require('../../helpers');
 
 const updateAvatar = async (req, res) => {
   const { _id } = req.user;
 
-  const { avatarURL, avatarPath } = await handleAvatarFile(_id, req.file);
+  const avatarPath = await handleAvatarFile(_id, req.file);
   const avatarCloudURL = await uploadAvatarToCloud(avatarPath);
+  await deleteFile(avatarPath);
 
-  const updateUser = await User.findByIdAndUpdate(
+  const user = await User.findByIdAndUpdate(
     _id,
-    { avatarURL, avatarCloudURL },
+    { avatarCloudURL },
     {
       new: true,
-      select: "-_id email subscription avatarURL avatarCloudURL",
+      select: '-_id email name avatarCloudURL',
     }
   );
 
-  res.json({ ...status.USER_UPDATE, updateUser });
+  res.json({ ...status.USER_UPDATE, user });
 };
 
 module.exports = decoratorCtrl(updateAvatar);

@@ -1,29 +1,25 @@
-const HttpError = require("./httpError");
-const decoratorCtrl = require("./decoratorCtrl");
-const validateContact = require("./validatorContact");
-const handleMongooseErr = require("./handleMongooseErr");
-const convertToInteger = require("./convertToInteger");
-const createPagination = require("./createPagination");
-const checkBoolean = require("./checkBoolean");
-const createFilter = require("./createFilter");
-const handleMulterErr = require("./handleMulterErr");
-const handleLibraresError = require("./handleLibraresError");
-const handleAvatarFile = require("./handleAvatarFile");
-const uploadAvatarToCloud = require("./uploadAvatarToCloud");
-const sendVerifyEmail = require("./sendVerifyEmail");
+const HttpError = require('./errorHandlers/httpError');
+const decoratorCtrl = require('./decoratorCtrl');
+const handleMongooseErr = require('./errorHandlers/handleMongooseErr');
+const convertToInteger = require('./convertToInteger');
+const checkBoolean = require('./checkBoolean');
+const handleMulterErr = require('./errorHandlers/handleMulterErr');
+const handleLibraresError = require('./errorHandlers/handleLibraresError');
+const handleAvatarFile = require('./fileHandlers/handleAvatarFile');
+const deleteFile = require('./fileHandlers/deleteFile');
+const uploadAvatarToCloud = require('./userHandlers/uploadAvatarToCloud');
+const createToken = require('./userHandlers/createToken');
 
 module.exports = {
   HttpError,
   decoratorCtrl,
-  validateContact,
   handleMongooseErr,
   handleMulterErr,
   handleLibraresError,
   handleAvatarFile,
   convertToInteger,
-  createPagination,
   checkBoolean,
-  createFilter,
   uploadAvatarToCloud,
-  sendVerifyEmail,
+  deleteFile,
+  createToken,
 };
