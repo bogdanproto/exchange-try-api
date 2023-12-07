@@ -4,8 +4,8 @@ const fs = require('fs/promises');
 require('dotenv').config();
 
 const handleAvatarFile = async (objId, file) => {
-  const { DIR_STATIC, DIR_AVATARS } = process.env;
-  const { path: tempPath, originalname } = file;
+  const { path: tempPath, destination, originalname } = file;
+  console.log(file);
 
   const id = objId.toString();
 
@@ -15,21 +15,14 @@ const handleAvatarFile = async (objId, file) => {
 
   const fileName = `${id}${extensionFile}`;
 
-  const avatarPath = path.join(
-    process.cwd(),
-    DIR_STATIC,
-    DIR_AVATARS,
-    fileName
-  );
+  const avatarPath = path.join(destination, fileName);
 
   const imgOptimized = await Jimp.read(tempPath);
   await imgOptimized.resize(250, Jimp.AUTO).writeAsync(tempPath);
 
   await fs.rename(tempPath, avatarPath);
 
-  const avatarURL = path.join(DIR_AVATARS, fileName);
-
-  return { avatarURL, avatarPath };
+  return avatarPath;
 };
 
 module.exports = handleAvatarFile;

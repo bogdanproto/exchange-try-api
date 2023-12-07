@@ -1,9 +1,9 @@
-const handleMulterErr = require("./handleMulterErr");
-const handleMongooseErr = require("./handleMongooseErr");
+const handleMulterErr = require('./handleMulterErr');
+const handleMongooseErr = require('./handleMongooseErr');
 
 const lineOfFunction =
   (...functions) =>
-  (err) =>
+  err =>
     functions.reduce((result, fn) => fn(result), err);
 
 const handleLibraresError = lineOfFunction(handleMulterErr, handleMongooseErr);
