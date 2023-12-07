@@ -23,8 +23,12 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   const error = handleLibraresError(err);
 
-  const { status = 500, message = 'Internal Server Error' } = error;
-  res.status(status).json({ status, message });
+  const {
+    status = 500,
+    message = 'Internal Server Error',
+    code = '500',
+  } = error;
+  res.status(status).json({ status, message, code });
 });
 
 module.exports = app;
