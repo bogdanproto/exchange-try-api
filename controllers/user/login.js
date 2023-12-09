@@ -29,7 +29,11 @@ const login = async (req, res) => {
     user: {
       email: user.email,
       name: user.name,
+      phone: user.phone,
       avatarCloudURL: user.avatarCloudURL,
+      mainsport: user.mainsport,
+      sports: user.sports,
+      equeipments: user.equeipments,
     },
     token,
   });

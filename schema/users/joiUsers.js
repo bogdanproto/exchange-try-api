@@ -36,4 +36,14 @@ const joiLoginSchema = Joi.object({
   }),
 });
 
-module.exports = { joiRegisterSchema, joiLoginSchema };
+const joiUpdateUserSchema = Joi.object({
+  name: Joi.string().messages({
+    'string.empty': 'Name is not allowed to be empty',
+  }),
+  phone: Joi.string().messages({
+    'string.empty': 'Phone is not allowed to be empty',
+  }),
+  equipments: Joi.array().items(Joi.string()),
+});
+
+module.exports = { joiRegisterSchema, joiLoginSchema, joiUpdateUserSchema };

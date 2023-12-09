@@ -6,9 +6,9 @@ const { status } = require('../../consts');
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
-  const user = await User.findOne({ email });
+  const isUserExist = await User.findOne({ email });
 
-  if (user) {
+  if (isUserExist) {
     throw HttpError(status.USER_CONFLICT);
   }
 
@@ -30,6 +30,8 @@ const register = async (req, res) => {
     user: {
       email: newUser.email,
       name: newUser.name,
+      mainsport: newUser.mainsport,
+      sports: newUser.sports,
     },
     token,
   });

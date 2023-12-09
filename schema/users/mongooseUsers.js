@@ -1,4 +1,5 @@
 const check = require('validator');
+const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const mongooseUserShema = new Schema(
@@ -18,6 +19,10 @@ const mongooseUserShema = new Schema(
         message: 'Email has wrong format',
       },
     },
+    phone: {
+      type: String,
+      default: null,
+    },
     password: {
       type: String,
       required: [true, 'Set password for user'],
@@ -29,6 +34,25 @@ const mongooseUserShema = new Schema(
     token: {
       type: String,
       default: null,
+    },
+    mainsport: {
+      type: Schema.Types.ObjectId,
+      ref: 'sport',
+      required: [true, 'Set main sport'],
+      default: () => new mongoose.Types.ObjectId('65743d3192dc689bb4b14328'),
+    },
+    sports: {
+      type: [Schema.Types.ObjectId],
+      ref: 'sport',
+      required: [true, 'Set as min one sport'],
+      default: function () {
+        return [this.mainsport];
+      },
+    },
+    equipments: {
+      type: [Schema.Types.ObjectId],
+      ref: 'equipment',
+      default: [],
     },
   },
   { timestamps: true }

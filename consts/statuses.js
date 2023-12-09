@@ -1,13 +1,18 @@
 const status = {
-  GET_SUCCESS: { status: 200, message: 'OK' },
   DELETE_SUCCESS: { status: 200, message: 'Deleted success' },
   PUT_SUCCESS: { status: 200, message: 'Updated success' },
   CREATED: { status: 201, message: 'Created' },
   MISSING_DATA: { status: 400, message: 'Bad Request' },
-  BAD_ID: { status: 400, message: 'Id is not valid' },
+
   BAD_PARAMS: { status: 400, message: 'Params is wrong or has wrong type' },
   NOT_FOUND: { status: 404, message: 'Not Found' },
   UNSUPPORTED_TYPE: { status: 415, message: 'Unsupported Media Type' },
+
+  // ==================================================
+  GET_SUCCESS: { status: 200, code: 'ok', message: 'OK' },
+  BAD_ID: { status: 400, code: 'bad_id', message: 'Id is not valid' },
+  BAD_DATA: { status: 400, code: 'bad_data', message: 'Bad Request' },
+  NOT_FOUND_ID: { status: 404, code: 'not_found_id', message: 'Not Found Id' },
 
   // ===============================================
   USER_LOGIN: {
