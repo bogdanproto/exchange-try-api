@@ -5,6 +5,7 @@ const pathUsers = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   CURRENT: '/current',
+  PROFILE: '/profile',
   AVATAR: '/avatars',
 };
 

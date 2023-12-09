@@ -2,9 +2,21 @@ const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
 
-const { usersRouter } = require('./routes/api');
 const { handleLibraresError } = require('./helpers');
-const { pathUsers, status } = require('./consts');
+const {
+  usersRouter,
+  sportsRouter,
+  spotRouter,
+  eqptRouter,
+} = require('./routes/api');
+
+const {
+  pathUsers,
+  pathSports,
+  pathSpots,
+  status,
+  pathEqpt,
+} = require('./consts');
 
 const app = express();
 
@@ -15,6 +27,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use(pathUsers.ROOT, usersRouter);
+app.use(pathSports.ROOT, sportsRouter);
+app.use(pathSpots.ROOT, spotRouter);
+app.use(pathEqpt.ROOT, eqptRouter);
 
 app.use((req, res) => {
   res.status(status.NOT_FOUND.status).json(status.NOT_FOUND);
