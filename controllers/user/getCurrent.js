@@ -2,7 +2,7 @@ const { decoratorCtrl } = require('../../helpers');
 const { status } = require('../../consts');
 
 const getCurrent = async (req, res) => {
-  const { email, name, avatarCloudURL, phone, mainsport, sports, equeipments } =
+  const { email, name, avatarCloudURL, phone, mainsport, sports, equipments } =
     req.user;
 
   res.json({
@@ -14,7 +14,7 @@ const getCurrent = async (req, res) => {
       phone,
       mainsport,
       sports,
-      equeipments,
+      equipments,
     },
   });
 };

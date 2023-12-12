@@ -33,7 +33,7 @@ const login = async (req, res) => {
       avatarCloudURL: user.avatarCloudURL,
       mainsport: user.mainsport,
       sports: user.sports,
-      equeipments: user.equeipments,
+      equipments: user.equipments,
     },
     token,
   });
