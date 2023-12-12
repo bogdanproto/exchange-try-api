@@ -6,6 +6,8 @@ const pathUsers = {
   LOGOUT: '/logout',
   CURRENT: '/current',
   PROFILE: '/profile',
+  EQPTS: '/equipments',
+  EQPTS_ID: '/equipments/:id',
   AVATAR: '/avatars',
 };
 

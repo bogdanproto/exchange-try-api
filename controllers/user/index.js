@@ -4,6 +4,8 @@ const logout = require('./logout');
 const getCurrent = require('./getCurrent');
 const updateAvatar = require('./updateAvatar');
 const updateProfile = require('./updateProfile');
+const updateEqpts = require('./updateEqpts');
+const deleteEqpt = require('./deleteEqpt');
 
 module.exports = {
   register,
@@ -12,4 +14,6 @@ module.exports = {
   getCurrent,
   updateAvatar,
   updateProfile,
+  updateEqpts,
+  deleteEqpt,
 };

@@ -1,10 +1,16 @@
 const express = require('express');
 const ctrl = require('../../controllers/user');
-const { validateBody, authenticate, upload } = require('../../middlewares');
+const {
+  validateBody,
+  authenticate,
+  upload,
+  validateMongoId,
+} = require('../../middlewares');
 const {
   joiRegisterSchema,
   joiLoginSchema,
   joiUpdateUserSchema,
+  joiUpdateEqptSchema,
 } = require('../../schema/users');
 const { pathUsers } = require('../../consts');
 
@@ -19,6 +25,13 @@ router.post(pathUsers.LOGOUT, authenticate, ctrl.logout);
 router.get(pathUsers.CURRENT, authenticate, ctrl.getCurrent);
 
 router.patch(
+  pathUsers.AVATAR,
+  authenticate,
+  upload.single('avatar'),
+  ctrl.updateAvatar
+);
+
+router.patch(
   pathUsers.PROFILE,
   authenticate,
   validateBody(joiUpdateUserSchema),
@@ -26,10 +39,17 @@ router.patch(
 );
 
 router.patch(
-  pathUsers.AVATAR,
+  pathUsers.EQPTS,
   authenticate,
-  upload.single('avatar'),
-  ctrl.updateAvatar
+  validateBody(joiUpdateEqptSchema),
+  ctrl.updateEqpts
+);
+
+router.delete(
+  pathUsers.EQPTS_ID,
+  authenticate,
+  validateMongoId,
+  ctrl.deleteEqpt
 );
 
 module.exports = router;

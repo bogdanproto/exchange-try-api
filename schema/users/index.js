@@ -3,6 +3,7 @@ const {
   joiRegisterSchema,
   joiLoginSchema,
   joiUpdateUserSchema,
+  joiUpdateEqptSchema,
 } = require('./joiUsers');
 
 module.exports = {
@@ -10,4 +11,5 @@ module.exports = {
   joiRegisterSchema,
   joiLoginSchema,
   joiUpdateUserSchema,
+  joiUpdateEqptSchema,
 };
