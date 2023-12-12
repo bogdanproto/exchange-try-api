@@ -43,7 +43,22 @@ const joiUpdateUserSchema = Joi.object({
   phone: Joi.string().messages({
     'string.empty': 'Phone is not allowed to be empty',
   }),
-  equipments: Joi.array().items(Joi.string()),
+}).or('name', 'phone');
+
+const joiUpdateEqptSchema = Joi.object({
+  title: Joi.string().required().messages({
+    'string.empty': 'Title is not allowed to be empty',
+    'any.required': 'Title is required',
+  }),
+  size: Joi.string().required().messages({
+    'string.empty': 'Size is not allowed to be empty',
+    'any.required': 'Size is required',
+  }),
 });
 
-module.exports = { joiRegisterSchema, joiLoginSchema, joiUpdateUserSchema };
+module.exports = {
+  joiRegisterSchema,
+  joiLoginSchema,
+  joiUpdateUserSchema,
+  joiUpdateEqptSchema,
+};

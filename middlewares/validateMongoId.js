@@ -1,11 +1,11 @@
-const { isValidObjectId } = require("mongoose");
-const { HttpError } = require("../helpers");
-const { status } = require("../consts");
+const { isValidObjectId } = require('mongoose');
+const { HttpError } = require('../helpers');
+const { status } = require('../consts');
 
 const validateMongoId = (req, res, next) => {
-  const { contactId } = req.params;
+  const { id } = req.params;
 
-  if (!isValidObjectId(contactId)) {
+  if (!isValidObjectId(id)) {
     next(HttpError(status.BAD_ID));
   }
   next();

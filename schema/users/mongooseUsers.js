@@ -50,8 +50,22 @@ const mongooseUserShema = new Schema(
       },
     },
     equipments: {
-      type: [Schema.Types.ObjectId],
-      ref: 'equipment',
+      type: [
+        {
+          serviceId: {
+            type: String,
+            required: [true, 'ServiceId is required'],
+          },
+          title: {
+            type: String,
+            required: [true, 'Title is required'],
+          },
+          size: {
+            type: String,
+            required: [true, 'Size is required'],
+          },
+        },
+      ],
       default: [],
     },
   },
