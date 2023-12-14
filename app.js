@@ -8,6 +8,7 @@ const {
   sportsRouter,
   spotRouter,
   eqptRouter,
+  proposalRouter,
 } = require('./routes/api');
 
 const {
@@ -16,6 +17,7 @@ const {
   pathSpots,
   status,
   pathEqpt,
+  pathProposal,
 } = require('./consts');
 
 const app = express();
@@ -27,6 +29,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(pathUsers.ROOT, usersRouter);
+app.use(pathProposal.ROOT, proposalRouter);
 app.use(pathSports.ROOT, sportsRouter);
 app.use(pathSpots.ROOT, spotRouter);
 app.use(pathEqpt.ROOT, eqptRouter);

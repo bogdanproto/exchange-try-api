@@ -1,82 +1,70 @@
 const { Schema } = require('mongoose');
 
-const mongooseProposalSchema = new Schema({
-  owner: {
-    type: {
-      id_owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'Owner is required'],
-      },
-      equipment: {
-        type: [Schema.Types.ObjectId],
-        ref: 'user_equipment',
-        required: [true, 'Set as min one equipment'],
-      },
-      spot: {
-        type: Schema.Types.ObjectId,
-        ref: 'spot',
-        required: [true, 'Spot is required'],
-      },
-      date: {
-        type: Date,
-        required: [true, 'Date is required'],
-      },
-      time: {
-        type: String,
-        required: [true, 'Time is required'],
-      },
-      owner_msg: {
-        type: String,
-        default: null,
-      },
-      is_show_phone: {
-        type: Boolean,
-        default: false,
-      },
-      is_auto_accept: {
-        type: Boolean,
-        default: false,
-      },
+const mongooseProposalSchema = new Schema(
+  {
+    ownerId: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      required: [true, 'ownerId is required'],
     },
-    required: [true, 'Owner is required'],
-  },
-
-  customer: {
-    type: {
-      id_customer: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: [true, 'Customer is required'],
-      },
-      equipment: {
-        type: [Schema.Types.ObjectId],
-        ref: 'user_equipment',
-        required: [true, 'Set as min one equipment'],
-      },
-
-      time: {
-        type: String,
-        default: null,
-      },
-      customer_msg: {
-        type: String,
-        default: null,
-      },
+    ownerEqpts: {
+      type: [Schema.Types.ObjectId],
+      ref: 'eqpt',
+      required: [true, 'Set as min one equipment'],
     },
-    default: {
-      id_customer: null,
-      equipment: [],
-      time: null,
-      customer_msg: null,
+    spot: {
+      type: Schema.Types.ObjectId,
+      ref: 'spot',
+      required: [true, 'Spot is required'],
+    },
+    ownerDate: {
+      type: String,
+      required: [true, 'Date is required'],
+    },
+    ownerTime: {
+      type: String,
+      required: [true, 'Time is required'],
+    },
+    ownerMsg: {
+      type: String,
+      default: null,
+    },
+    isShowPhone: {
+      type: Boolean,
+      default: false,
+    },
+    isAutoAccept: {
+      type: Boolean,
+      default: false,
+    },
+
+    customerId: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      default: null,
+    },
+    customerEqpts: {
+      type: [Schema.Types.ObjectId],
+      ref: 'eqpt',
+      default: null,
+    },
+
+    customerTimeUnix: {
+      type: String,
+      default: null,
+    },
+    customerMsg: {
+      type: String,
+      default: null,
+    },
+
+    isAccepted: {
+      type: String,
+      default: 'pending',
+      enum: ['pending', 'reservation', 'accepted'],
     },
   },
-
-  is_accepted: {
-    type: String,
-    default: 'pending',
-    enum: ['pending', 'accepted', 'rejected'],
-  },
-});
+  { timestamps: true }
+);
 
 module.exports = mongooseProposalSchema;

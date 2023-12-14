@@ -5,6 +5,18 @@ const status = {
   BAD_PARAMS: { status: 400, message: 'Params is wrong or has wrong type' },
   NOT_FOUND: { status: 404, message: 'Not Found' },
 
+  // ============Mongoose================================
+  BAD_DATA_MONGOOSE: {
+    status: 400,
+    code: 'bad_data_moongoose',
+    message: 'Bad Request',
+  },
+  BAD_ID_MONGOOSE: {
+    status: 400,
+    code: 'bad_id_moongoose',
+    message: 'Bad Request',
+  },
+
   // ==================================================
   GET_SUCCESS: { status: 200, code: 'ok', message: 'OK' },
   DELETE_SUCCESS: {

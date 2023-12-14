@@ -49,23 +49,9 @@ const mongooseUserShema = new Schema(
         return [this.mainsport];
       },
     },
-    equipments: {
-      type: [
-        {
-          serviceId: {
-            type: String,
-            required: [true, 'ServiceId is required'],
-          },
-          title: {
-            type: String,
-            required: [true, 'Title is required'],
-          },
-          size: {
-            type: String,
-            required: [true, 'Size is required'],
-          },
-        },
-      ],
+    eqpts: {
+      type: [Schema.Types.ObjectId],
+      ref: 'eqpt',
       default: [],
     },
   },
