@@ -14,25 +14,23 @@ const register = async (req, res) => {
 
   const hashPass = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({
+  const { _id } = await User.create({
     email,
     name,
     password: hashPass,
   });
-  const { _id } = newUser;
 
   const token = createToken(_id);
 
-  await User.updateOne({ _id }, { token });
+  const user = await User.findByIdAndUpdate(
+    _id,
+    { token },
+    { new: true, select: '-_id name email sports mainsport' }
+  ).populate([{ path: 'sports' }, { path: 'mainsport' }]);
 
   res.status(status.CREATED.status).json({
     ...status.CREATED,
-    user: {
-      email: newUser.email,
-      name: newUser.name,
-      mainsport: newUser.mainsport,
-      sports: newUser.sports,
-    },
+    user,
     token,
   });
 };
