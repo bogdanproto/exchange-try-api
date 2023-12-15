@@ -1,7 +1,7 @@
 const pathEqpt = {
   ROOT: '/api/equipments',
   BASE: '/',
-  ID: '/:equipmentid',
+  ID: '/:id',
 };
 
 Object.freeze(pathEqpt);

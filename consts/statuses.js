@@ -5,17 +5,40 @@ const status = {
   BAD_PARAMS: { status: 400, message: 'Params is wrong or has wrong type' },
   NOT_FOUND: { status: 404, message: 'Not Found' },
 
+  // ============Mongoose================================
+  BAD_DATA_MONGOOSE: {
+    status: 400,
+    code: 'bad_data_moongoose',
+    message: 'Bad Request',
+  },
+  BAD_ID_MONGOOSE: {
+    status: 400,
+    code: 'bad_id_moongoose',
+    message: 'Bad Request',
+  },
+
   // ==================================================
   GET_SUCCESS: { status: 200, code: 'ok', message: 'OK' },
+
   DELETE_SUCCESS: {
     status: 200,
     code: 'deleted_ok',
     message: 'Deleted success',
   },
   CREATED: { status: 201, code: 'created', message: 'Created' },
+
   BAD_ID: { status: 400, code: 'bad_id', message: 'Id is not valid' },
-  BAD_DATA: { status: 400, code: 'bad_data', message: 'Bad Request' },
+
+  NOT_MATCH_ID: {
+    status: 404,
+    code: 'owner_doesnt_have_id',
+    message: 'Owner doesnt have id',
+  },
+
   NOT_FOUND_ID: { status: 404, code: 'not_found_id', message: 'Not Found Id' },
+
+  BAD_DATA: { status: 400, code: 'bad_data', message: 'Bad Request' },
+
   UNSUPPORTED_TYPE: {
     status: 415,
     code: 'unsupported_media_type',

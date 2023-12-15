@@ -2,19 +2,20 @@ const { Schema } = require('mongoose');
 
 const mongooseEqptShema = new Schema(
   {
-    type: {
+    title: {
       type: String,
-      unique: true,
-      lowercase: true,
       trim: true,
-      required: [true, 'Set type'],
+      required: [true, 'Title is required'],
     },
-    item: {
+    size: {
       type: String,
-      unique: true,
-      lowercase: true,
       trim: true,
-      required: [true, 'Set item eqpt'],
+      required: [true, 'Size is required'],
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      required: [true, 'User is required'],
     },
   },
   { timestamps: true }

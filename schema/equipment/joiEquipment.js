@@ -1,14 +1,14 @@
 const Joi = require('joi');
 
-const joiEqptSchema = Joi.object({
-  type: Joi.string().required().messages({
-    'any.required': 'type is required',
-    'string.empty': 'type is not allowed to be empty',
+const joiEqptCreateSchema = Joi.object({
+  title: Joi.string().required().messages({
+    'any.required': 'title_required',
+    'string.empty': 'title_empty',
   }),
-  item: Joi.string().required().messages({
-    'any.required': 'ID of item is required',
-    'string.empty': 'ID of item is not allowed to be empty',
+  size: Joi.string().required().messages({
+    'any.required': 'size_required',
+    'string.empty': 'size_empty',
   }),
 });
 
-module.exports = joiEqptSchema;
+module.exports = joiEqptCreateSchema;

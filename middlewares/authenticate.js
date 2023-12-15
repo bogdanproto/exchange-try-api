@@ -18,7 +18,11 @@ const authenticate = async (req, res, next) => {
     const { PRIVATE_KEY } = process.env;
     const { _id } = jwt.verify(token, PRIVATE_KEY);
 
-    const user = await User.findById(_id);
+    const user = await User.findById(_id).populate([
+      { path: 'eqpts', select: '_id title size' },
+      { path: 'sports' },
+      { path: 'mainsport' },
+    ]);
 
     if (!user || !user.token || user.token !== token) {
       next(HttpError(status.USER_UNAUTHORIZEDTOKEN));

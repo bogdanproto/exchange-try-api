@@ -11,6 +11,7 @@ const uploadAvatarToCloud = require('./userHandlers/uploadAvatarToCloud');
 const createToken = require('./userHandlers/createToken');
 const handleId = require('./common/handleId');
 const handleArrayId = require('./common/handleArrayId');
+const proposalHandler = require('./resHandlers/proposalHandler');
 
 module.exports = {
   HttpError,
@@ -26,4 +27,5 @@ module.exports = {
   createToken,
   handleId,
   handleArrayId,
+  proposalHandler,
 };

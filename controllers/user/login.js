@@ -7,7 +7,11 @@ const { status } = require('../../consts');
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).populate([
+    { path: 'mainsport' },
+    { path: 'sports' },
+    { path: 'eqpts', select: '_id title size' },
+  ]);
   if (!user) {
     throw HttpError(status.USER_UNAUTHORIZED);
   }
@@ -33,7 +37,7 @@ const login = async (req, res) => {
       avatarCloudURL: user.avatarCloudURL,
       mainsport: user.mainsport,
       sports: user.sports,
-      equipments: user.equipments,
+      eqpts: user.eqpts,
     },
     token,
   });

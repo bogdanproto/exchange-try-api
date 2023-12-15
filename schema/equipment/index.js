@@ -1,7 +1,7 @@
 const mongooseEqptShema = require('./mongooseEquipments');
-const joiEqptSchema = require('./joiEquipment');
+const joiEqptCreateSchema = require('./joiEquipment');
 
 module.exports = {
   mongooseEqptShema,
-  joiEqptSchema,
+  joiEqptCreateSchema,
 };
