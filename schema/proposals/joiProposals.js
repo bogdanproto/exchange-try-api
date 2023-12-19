@@ -43,9 +43,8 @@ const joiProposalOwnerCreateShema = Joi.object({
     'any.required': 'ownertime_required',
     'string.empty': 'ownertime_empty',
   }),
-  ownerMsg: Joi.string().messages({
-    'string.empty': 'owner_msg_empty',
-  }),
+  ownerMsg: Joi.string().allow(''),
+
   isShowPhone: Joi.boolean().required().messages({
     'any.required': 'is_show_phone_required',
     'boolean.base': 'is_show_phone_must_boolean',
