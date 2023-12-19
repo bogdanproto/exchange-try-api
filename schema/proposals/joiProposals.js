@@ -23,23 +23,16 @@ const joiEqptSchema = Joi.object({
 });
 
 const joiProposalOwnerCreateShema = Joi.object({
-  ownerEqpts: Joi.array().items(joiEqptSchema).required().messages({
+  ownerEqpts: Joi.array().items(Joi.string()).required().messages({
     'any.required': 'ownereqpts_array_required',
     'array.base': 'ownereqpts_must_be_an_array',
     'array.empty': 'ownereqpts_array_empty',
   }),
-  spot: Joi.object({
-    _id: Joi.string().required().messages({
-      'any.required': 'id_spot_required',
-      'string.empty': 'id_spot_empty',
-    }),
-    label: Joi.string(),
-  })
-    .required()
-    .messages({
-      'any.required': 'spot_required',
-      'object.base': 'spot_must_be_an_object',
-    }),
+  spot: Joi.string().required().messages({
+    'any.required': 'spot_required',
+    'string.empty': 'spot_empty',
+  }),
+
   ownerDate: Joi.string().custom(isDateFuture).required().messages({
     'any.required': 'ownerdate_required',
     'string.empty': 'ownerdate_empty',
