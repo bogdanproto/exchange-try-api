@@ -9,8 +9,6 @@ const createProposal = async (req, res) => {
   const proposal = {
     ...ownerProposal,
     ownerId: _id,
-    ownerEqpts: ownerProposal.ownerEqpts.map(eqpt => eqpt._id),
-    spot: ownerProposal.spot._id,
   };
 
   const data = await Proposal.create(proposal);
