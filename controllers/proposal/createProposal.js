@@ -14,8 +14,11 @@ const createProposal = async (req, res) => {
   const { _id: idNewProposal } = await Proposal.create(proposal);
   const tempData = await Proposal.findById(idNewProposal)
     .populate([
-      { path: 'ownerId', select: '-_id name phone avatarCloudURL equipments' },
-      { path: 'spot', select: '-_id' },
+      {
+        path: 'ownerId',
+        select: '_id name phone experience avatarCloudURL equipments',
+      },
+      { path: 'spot' },
       { path: 'ownerEqpts', select: '_id title size' },
     ])
     .select(

@@ -26,6 +26,11 @@ const status = {
     message: 'Deleted success',
   },
   CREATED: { status: 201, code: 'created', message: 'Created' },
+  UPDATE_SUCCESS: {
+    status: 200,
+    code: 'data_update_success',
+    message: 'Updated success',
+  },
 
   BAD_ID: { status: 400, code: 'bad_id', message: 'Id is not valid' },
 
@@ -76,6 +81,11 @@ const status = {
     status: 401,
     code: 'user_unauthorized_token',
     message: 'User is not authorized',
+  },
+  USER_UNAUTHORIZED_OPERATION: {
+    status: 401,
+    code: 'user_unauthorized_for_operation',
+    message: 'User is unauthorized for this operation',
   },
   USER_CONFLICT: {
     status: 409,

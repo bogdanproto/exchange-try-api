@@ -14,13 +14,13 @@ const isDateFuture = (date, helpers) => {
   return date;
 };
 
-const joiEqptSchema = Joi.object({
-  _id: Joi.string().required().messages({
-    'any.required': 'id_eqpt_required',
-    'string.empty': 'id_eqpt_empty',
-  }),
-  label: Joi.string(),
-});
+// const joiEqptSchema = Joi.object({
+//   _id: Joi.string().required().messages({
+//     'any.required': 'id_eqpt_required',
+//     'string.empty': 'id_eqpt_empty',
+//   }),
+//   label: Joi.string(),
+// });
 
 const joiProposalOwnerCreateShema = Joi.object({
   ownerEqpts: Joi.array().items(Joi.string()).required().messages({
@@ -56,14 +56,14 @@ const joiProposalOwnerCreateShema = Joi.object({
 });
 
 const joiProposalCustomerUpdShema = Joi.object({
-  customerEqpts: Joi.array().items(joiEqptSchema).required().messages({
-    'any.required': 'customerEqpts array is required',
-    'array.base': 'customerEqpts must be an array',
-    'array.empty': 'customerEqpts array is not allowed to be empty',
+  customerEqpts: Joi.array().items(Joi.string()).required().messages({
+    'any.required': 'customereqpts_array_required',
+    'array.base': 'customereqpts_must_be_an_array',
+    'array.empty': 'customereqpts_array_empty',
   }),
 
-  customerTimeUnix: Joi.string().messages({
-    'string.empty': 'customerTimeUnix is not allowed to be empty',
+  customerTime: Joi.string().messages({
+    'string.empty': 'customerTime is not allowed to be empty',
   }),
   customerMsg: Joi.string().messages({
     'string.empty': 'Customer_msg is not allowed to be empty',

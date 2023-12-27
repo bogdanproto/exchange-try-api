@@ -49,7 +49,7 @@ const mongooseProposalSchema = new Schema(
       default: null,
     },
 
-    customerTimeUnix: {
+    customerTime: {
       type: String,
       default: null,
     },

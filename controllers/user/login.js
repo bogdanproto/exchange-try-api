@@ -31,9 +31,11 @@ const login = async (req, res) => {
   res.json({
     ...status.USER_LOGIN,
     user: {
+      _id: user._id,
       email: user.email,
       name: user.name,
       phone: user.phone,
+      experience: user.experience,
       avatarCloudURL: user.avatarCloudURL,
       mainsport: user.mainsport,
       sports: user.sports,

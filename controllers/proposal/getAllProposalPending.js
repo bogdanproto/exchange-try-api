@@ -2,11 +2,14 @@ const { status } = require('../../consts');
 const { decoratorCtrl, proposalHandler } = require('../../helpers');
 const { Proposal } = require('../../models');
 
-const getAllProposal = async (_, res) => {
+const getAllProposalPending = async (_, res) => {
   const tempData = await Proposal.find({ isAccepted: 'pending' })
     .populate([
-      { path: 'ownerId', select: '-_id name phone avatarCloudURL equipments' },
-      { path: 'spot', select: '-_id' },
+      {
+        path: 'ownerId',
+        select: '_id name phone experience avatarCloudURL equipments',
+      },
+      { path: 'spot' },
       { path: 'ownerEqpts', select: '_id title size' },
     ])
     .select(
@@ -19,4 +22,4 @@ const getAllProposal = async (_, res) => {
   res.json({ ...status.GET_SUCCESS, data });
 };
 
-module.exports = decoratorCtrl(getAllProposal);
+module.exports = decoratorCtrl(getAllProposalPending);

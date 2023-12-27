@@ -31,6 +31,10 @@ const mongooseUserShema = new Schema(
       type: String,
       default: null,
     },
+    experience: {
+      type: Number,
+      default: null,
+    },
     token: {
       type: String,
       default: null,

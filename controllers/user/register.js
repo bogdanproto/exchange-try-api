@@ -25,7 +25,7 @@ const register = async (req, res) => {
   const user = await User.findByIdAndUpdate(
     _id,
     { token },
-    { new: true, select: '-_id name email sports mainsport' }
+    { new: true, select: '_id name email sports mainsport' }
   ).populate([{ path: 'sports' }, { path: 'mainsport' }]);
 
   res.status(status.CREATED.status).json({
