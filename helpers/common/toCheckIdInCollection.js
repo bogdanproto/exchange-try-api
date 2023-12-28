@@ -2,7 +2,7 @@ const { isValidObjectId } = require('mongoose');
 const HttpError = require('../errorHandlers/httpError');
 const { status } = require('../../consts');
 
-const handleId = async (id, collection) => {
+const toCheckIdInCollection = async (id, collection) => {
   if (!isValidObjectId(id)) {
     throw HttpError(status.BAD_ID);
   }
@@ -13,7 +13,7 @@ const handleId = async (id, collection) => {
     throw HttpError(status.NOT_FOUND_ID);
   }
 
-  return doc._id;
+  return doc;
 };
 
-module.exports = handleId;
+module.exports = toCheckIdInCollection;

@@ -43,7 +43,10 @@ const joiUpdateUserSchema = Joi.object({
   phone: Joi.string().messages({
     'string.empty': 'Phone is not allowed to be empty',
   }),
-}).or('name', 'phone');
+  experience: Joi.number().min(0).message({
+    'number.min': 'Experience should not be less than 0',
+  }),
+}).or('name', 'phone', 'experience');
 
 const joiUpdateEqptSchema = Joi.object({
   title: Joi.string().required().messages({

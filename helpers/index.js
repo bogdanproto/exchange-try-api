@@ -9,7 +9,7 @@ const handleAvatarFile = require('./fileHandlers/handleAvatarFile');
 const deleteFile = require('./fileHandlers/deleteFile');
 const uploadAvatarToCloud = require('./userHandlers/uploadAvatarToCloud');
 const createToken = require('./userHandlers/createToken');
-const handleId = require('./common/handleId');
+const toCheckIdInCollection = require('./common/toCheckIdInCollection');
 const handleArrayId = require('./common/handleArrayId');
 const proposalHandler = require('./resHandlers/proposalHandler');
 
@@ -25,7 +25,7 @@ module.exports = {
   uploadAvatarToCloud,
   deleteFile,
   createToken,
-  handleId,
+  toCheckIdInCollection,
   handleArrayId,
   proposalHandler,
 };

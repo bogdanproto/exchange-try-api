@@ -1,7 +1,17 @@
 const createProposal = require('./createProposal');
-const getAllProposal = require('./getAllProposal');
+const getAllProposalPending = require('./getAllProposalPending');
+const updateProposalToCustomer = require('./updateProposalToCustomer');
+const updateProposalToOwner = require('./updateProposalToOwner');
+const deleteProposal = require('./deleteProposal');
+const getAllProposalReservation = require('./getAllProposalReservation');
+const getQntProposalOwnerReservation = require('./getQntProposalOwnerReservation');
 
 module.exports = {
   createProposal,
-  getAllProposal,
+  getAllProposalPending,
+  getAllProposalReservation,
+  getQntProposalOwnerReservation,
+  updateProposalToCustomer,
+  updateProposalToOwner,
+  deleteProposal,
 };
