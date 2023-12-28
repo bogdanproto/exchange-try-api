@@ -21,6 +21,12 @@ router.get(
   ctrl.getAllProposalReservation
 );
 
+router.get(
+  pathProposal.RESERVATION_OWNER,
+  authenticate,
+  ctrl.getQntProposalOwnerReservation
+);
+
 router.post(
   pathProposal.BASE,
   authenticate,
