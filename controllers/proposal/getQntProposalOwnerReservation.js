@@ -6,7 +6,7 @@ const getQntProposalOwnerReservation = async (req, res) => {
   const { _id: ownerId } = req.user;
 
   const data = await Proposal.find({
-    isAccepted: 'reservation',
+    statusProposal: 'reservation',
     ownerId,
   });
 

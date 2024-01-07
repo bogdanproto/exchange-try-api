@@ -3,6 +3,9 @@ const {
   decoratorCtrl,
   proposalHandler,
   toCheckIdInCollection,
+  HttpError,
+  createPopulate,
+  createSelector,
 } = require('../../helpers');
 const { Proposal } = require('../../models');
 
@@ -11,34 +14,21 @@ const updateProposalToCustomer = async (req, res) => {
   const { id: proposalId } = req.params;
   const { _id: customerId } = req.user;
 
-  await toCheckIdInCollection(proposalId, Proposal);
+  const { statusProposal } = await toCheckIdInCollection(proposalId, Proposal);
+
+  if (statusProposal === 'accepted') {
+    throw HttpError(status.PROPOSAL_ACCEPTED);
+  }
 
   const updatedProposal = await Proposal.findByIdAndUpdate(
     proposalId,
-    { customerId, ...customerData, isAccepted: 'reservation' },
+    { customerId, ...customerData, statusProposal: 'reservation' },
     {
       new: true,
     }
   )
-    .populate([
-      {
-        path: 'ownerId',
-        select: '_id name phone experience avatarCloudURL equipments',
-      },
-      { path: 'spot' },
-      { path: 'ownerEqpts', select: '_id title size' },
-      {
-        path: 'customerId',
-        select: '_id name phone experience avatarCloudURL equipments',
-      },
-      {
-        path: 'customerEqpts',
-        select: '_id title size',
-      },
-    ])
-    .select(
-      'ownerEqpts ownerDate ownerTime ownerMsg isAutoAccept isShowPhone customerTime customerMsg createdAt updatedAt'
-    )
+    .populate(createPopulate('reservation'))
+    .select(createSelector('reservation'))
     .lean();
 
   const data = proposalHandler([updatedProposal]);

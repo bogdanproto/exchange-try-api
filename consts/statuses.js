@@ -17,6 +17,29 @@ const status = {
     message: 'Bad Request',
   },
 
+  // ============Proposals================================
+
+  PROPOSAL_RESERVATION: {
+    status: 400,
+    code: 'proposal_reservation_cant_change',
+    message: 'Proposal cant be changed in status reservation ',
+  },
+  PROPOSAL_ONLY_RESERVATION: {
+    status: 400,
+    code: 'proposal_reservation_only',
+    message: 'Proposal can be changed in status reservation only',
+  },
+  PROPOSAL_ACCEPTED: {
+    status: 400,
+    code: 'proposal_accepted_cant_change',
+    message: 'Proposal cant be changed in status accepted',
+  },
+  PROPOSAL_STATUS: {
+    status: 400,
+    code: 'status_doesnt_exist',
+    message: 'Proposal doesnt have specified status ',
+  },
+
   // ==================================================
   GET_SUCCESS: { status: 200, code: 'ok', message: 'OK' },
 

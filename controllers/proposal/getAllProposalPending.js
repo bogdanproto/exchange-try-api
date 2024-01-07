@@ -1,20 +1,16 @@
 const { status } = require('../../consts');
-const { decoratorCtrl, proposalHandler } = require('../../helpers');
+const {
+  decoratorCtrl,
+  proposalHandler,
+  createPopulate,
+  createSelector,
+} = require('../../helpers');
 const { Proposal } = require('../../models');
 
 const getAllProposalPending = async (_, res) => {
-  const tempData = await Proposal.find({ isAccepted: 'pending' })
-    .populate([
-      {
-        path: 'ownerId',
-        select: '_id name phone experience avatarCloudURL equipments',
-      },
-      { path: 'spot' },
-      { path: 'ownerEqpts', select: '_id title size' },
-    ])
-    .select(
-      'ownerEqpts ownerDate ownerTime ownerMsg isAutoAccept isShowPhone createdAt updatedAt'
-    )
+  const tempData = await Proposal.find({ statusProposal: 'pending' })
+    .populate(createPopulate('pending'))
+    .select(createSelector('pending'))
     .lean();
 
   const data = proposalHandler(tempData);

@@ -12,6 +12,8 @@ const createToken = require('./userHandlers/createToken');
 const toCheckIdInCollection = require('./common/toCheckIdInCollection');
 const handleArrayId = require('./common/handleArrayId');
 const proposalHandler = require('./resHandlers/proposalHandler');
+const createPopulate = require('./customPopulate/createPopulate');
+const createSelector = require('./customSelector/createSelector');
 
 module.exports = {
   HttpError,
@@ -28,4 +30,6 @@ module.exports = {
   toCheckIdInCollection,
   handleArrayId,
   proposalHandler,
+  createPopulate,
+  createSelector,
 };

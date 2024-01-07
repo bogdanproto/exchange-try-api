@@ -58,7 +58,7 @@ const mongooseProposalSchema = new Schema(
       default: null,
     },
 
-    isAccepted: {
+    statusProposal: {
       type: String,
       default: 'pending',
       enum: ['pending', 'reservation', 'accepted'],
