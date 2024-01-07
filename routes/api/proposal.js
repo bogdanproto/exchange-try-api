@@ -9,6 +9,7 @@ const {
 const {
   joiProposalOwnerCreateShema,
   joiProposalCustomerUpdShema,
+  joiProposalAcceptShema,
 } = require('../../schema/proposals');
 
 const router = express.Router();
@@ -16,9 +17,9 @@ const router = express.Router();
 router.get(pathProposal.BASE, authenticate, ctrl.getAllProposalPending);
 
 router.get(
-  pathProposal.RESERVATION,
+  pathProposal.STATUS_PROPOSAL,
   authenticate,
-  ctrl.getAllProposalReservation
+  ctrl.getAllProposalByStatus
 );
 
 router.get(
@@ -35,11 +36,18 @@ router.post(
 );
 
 router.patch(
-  pathProposal.ID,
+  pathProposal.CUSTOMER_UPD,
   authenticate,
   validateMongoId,
   validateBody(joiProposalCustomerUpdShema),
   ctrl.updateProposalToCustomer
+);
+
+router.patch(
+  pathProposal.CUSTOMER_REMOVE_OFFER,
+  authenticate,
+  validateMongoId,
+  ctrl.removeCustomerOffer
 );
 
 router.patch(
@@ -48,6 +56,14 @@ router.patch(
   validateMongoId,
   validateBody(joiProposalOwnerCreateShema),
   ctrl.updateProposalToOwner
+);
+
+router.patch(
+  pathProposal.OWNER_UPD_STATUS,
+  authenticate,
+  validateMongoId,
+  validateBody(joiProposalAcceptShema),
+  ctrl.updateProposalStatus
 );
 
 router.delete(

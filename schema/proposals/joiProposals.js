@@ -14,14 +14,6 @@ const isDateFuture = (date, helpers) => {
   return date;
 };
 
-// const joiEqptSchema = Joi.object({
-//   _id: Joi.string().required().messages({
-//     'any.required': 'id_eqpt_required',
-//     'string.empty': 'id_eqpt_empty',
-//   }),
-//   label: Joi.string(),
-// });
-
 const joiProposalOwnerCreateShema = Joi.object({
   ownerEqpts: Joi.array().items(Joi.string()).required().messages({
     'any.required': 'ownereqpts_array_required',
@@ -65,24 +57,16 @@ const joiProposalCustomerUpdShema = Joi.object({
   customerTime: Joi.string().messages({
     'string.empty': 'customerTime is not allowed to be empty',
   }),
-  customerMsg: Joi.string().messages({
-    'string.empty': 'Customer_msg is not allowed to be empty',
-  }),
+  customerMsg: Joi.string().allow(''),
 });
 
 const joiProposalAcceptShema = Joi.object({
-  isAccepted: Joi.string()
-    .valid('pending', 'accepted', 'rejected')
-    .required()
-    .messages({
-      'any.required': 'is_accepted is required',
-      'string.base': 'is_accepted must be a string',
-      'any.only':
-        'is_accepted must be one of "pending", "accepted", or "rejected"',
-    }),
-  ownerMsg: Joi.string().messages({
-    'string.empty': 'Customer_msg is not allowed to be empty',
+  statusProposal: Joi.string().valid('accept', 'reject').required().messages({
+    'any.required': 'status is required',
+    'string.base': 'status must be a string',
+    'any.only': 'status must be one of "accept" or "reject"',
   }),
+  ownerMsg: Joi.string().allow(''),
 });
 
 module.exports = {

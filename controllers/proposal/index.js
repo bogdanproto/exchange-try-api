@@ -3,15 +3,19 @@ const getAllProposalPending = require('./getAllProposalPending');
 const updateProposalToCustomer = require('./updateProposalToCustomer');
 const updateProposalToOwner = require('./updateProposalToOwner');
 const deleteProposal = require('./deleteProposal');
-const getAllProposalReservation = require('./getAllProposalReservation');
+const getAllProposalByStatus = require('./getAllProposalByStatus');
 const getQntProposalOwnerReservation = require('./getQntProposalOwnerReservation');
+const removeCustomerOffer = require('./removeCustomerOffer');
+const updateProposalStatus = require('./updateProposalStatus');
 
 module.exports = {
   createProposal,
   getAllProposalPending,
-  getAllProposalReservation,
+  getAllProposalByStatus,
   getQntProposalOwnerReservation,
   updateProposalToCustomer,
   updateProposalToOwner,
   deleteProposal,
+  removeCustomerOffer,
+  updateProposalStatus,
 };

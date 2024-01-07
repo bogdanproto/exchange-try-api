@@ -1,35 +1,33 @@
 const { status } = require('../../consts');
 const {
   decoratorCtrl,
-  proposalHandler,
   toCheckIdInCollection,
   HttpError,
+  proposalHandler,
   createPopulate,
   createSelector,
 } = require('../../helpers');
 const { Proposal } = require('../../models');
 
-const updateProposalToOwner = async (req, res) => {
-  const ownerData = req.body;
-  const { id: proposalId } = req.params;
+const removeCustomerOffer = async (req, res) => {
   const { _id: userId } = req.user;
+  const { id: proposalId } = req.params;
 
-  const { ownerId, statusProposal } = await toCheckIdInCollection(
-    proposalId,
-    Proposal
-  );
+  const { customerId } = await toCheckIdInCollection(proposalId, Proposal);
 
-  if (ownerId.toString() !== userId.toString()) {
+  if (!customerId || customerId.toString() !== userId.toString()) {
     throw HttpError(status.USER_UNAUTHORIZED_OPERATION);
-  }
-
-  if (statusProposal !== 'pending') {
-    throw HttpError(status.PROPOSAL_RESERVATION);
   }
 
   const updatedProposal = await Proposal.findByIdAndUpdate(
     proposalId,
-    { ...ownerData },
+    {
+      customerId: null,
+      customerEqpts: null,
+      customerTime: null,
+      customerMsg: null,
+      statusProposal: 'pending',
+    },
     {
       new: true,
     }
@@ -43,4 +41,4 @@ const updateProposalToOwner = async (req, res) => {
   res.json({ ...status.UPDATE_SUCCESS, data: data[0] });
 };
 
-module.exports = decoratorCtrl(updateProposalToOwner);
+module.exports = decoratorCtrl(removeCustomerOffer);
