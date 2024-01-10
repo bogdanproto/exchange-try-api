@@ -7,6 +7,8 @@ const getAllProposalByStatus = require('./getAllProposalByStatus');
 const getQntProposalOwnerReservation = require('./getQntProposalOwnerReservation');
 const removeCustomerOffer = require('./removeCustomerOffer');
 const updateProposalStatus = require('./updateProposalStatus');
+const cancelProposal = require('./cancelProposal');
+const gelAllHistoryProposals = require('./gelAllHistoryProposals');
 
 module.exports = {
   createProposal,
@@ -18,4 +20,6 @@ module.exports = {
   deleteProposal,
   removeCustomerOffer,
   updateProposalStatus,
+  cancelProposal,
+  gelAllHistoryProposals,
 };

@@ -31,8 +31,8 @@ const status = {
   },
   PROPOSAL_ACCEPTED: {
     status: 400,
-    code: 'proposal_accepted_cant_change',
-    message: 'Proposal cant be changed in status accepted',
+    code: 'proposal_can_change_only_accepted',
+    message: 'Proposal can be changed only in status accepted',
   },
   PROPOSAL_STATUS: {
     status: 400,
