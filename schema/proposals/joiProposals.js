@@ -41,10 +41,6 @@ const joiProposalOwnerCreateShema = Joi.object({
     'any.required': 'is_show_phone_required',
     'boolean.base': 'is_show_phone_must_boolean',
   }),
-  isAutoAccept: Joi.boolean().required().messages({
-    'any.required': 'is_auto_accept_required',
-    'boolean.base': 'is_auto_accept_must_boolean',
-  }),
 });
 
 const joiProposalCustomerUpdShema = Joi.object({
@@ -69,8 +65,21 @@ const joiProposalAcceptShema = Joi.object({
   ownerMsg: Joi.string().allow(''),
 });
 
+const joiProposalCancelShema = Joi.object({
+  statusProposal: Joi.string().valid('cancelled').required().messages({
+    'any.required': 'status is required',
+    'string.base': 'status must be a string',
+    'any.only': 'status must be only "cancelled"',
+  }),
+  cancelMsg: Joi.string().required().messages({
+    'any.required': 'message_required',
+    'string.empty': 'message_empty',
+  }),
+});
+
 module.exports = {
   joiProposalOwnerCreateShema,
   joiProposalCustomerUpdShema,
   joiProposalAcceptShema,
+  joiProposalCancelShema,
 };

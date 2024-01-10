@@ -1,3 +1,4 @@
+const moment = require('moment');
 const { status } = require('../../consts');
 const {
   decoratorCtrl,
@@ -8,7 +9,12 @@ const {
 const { Proposal } = require('../../models');
 
 const getAllProposalPending = async (_, res) => {
-  const tempData = await Proposal.find({ statusProposal: 'pending' })
+  const currentDate = moment().endOf('day').format('YYYY-MM-DD');
+
+  const tempData = await Proposal.find({
+    statusProposal: 'pending',
+    ownerDate: { $exists: true, $gte: currentDate },
+  })
     .populate(createPopulate('pending'))
     .select(createSelector('pending'))
     .lean();

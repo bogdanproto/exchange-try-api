@@ -11,6 +11,9 @@ const {
   joiProposalCustomerUpdShema,
   joiProposalAcceptShema,
 } = require('../../schema/proposals');
+const {
+  joiProposalCancelShema,
+} = require('../../schema/proposals/joiProposals');
 
 const router = express.Router();
 
@@ -26,6 +29,12 @@ router.get(
   pathProposal.RESERVATION_OWNER,
   authenticate,
   ctrl.getQntProposalOwnerReservation
+);
+
+router.get(
+  pathProposal.STATUS_HISTORY,
+  authenticate,
+  ctrl.gelAllHistoryProposals
 );
 
 router.post(
@@ -64,6 +73,14 @@ router.patch(
   validateMongoId,
   validateBody(joiProposalAcceptShema),
   ctrl.updateProposalStatus
+);
+
+router.patch(
+  pathProposal.CANCEL_PROPOSAL,
+  authenticate,
+  validateMongoId,
+  validateBody(joiProposalCancelShema),
+  ctrl.cancelProposal
 );
 
 router.delete(

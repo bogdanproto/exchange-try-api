@@ -33,10 +33,6 @@ const mongooseProposalSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    isAutoAccept: {
-      type: Boolean,
-      default: false,
-    },
 
     customerId: {
       type: Schema.Types.ObjectId,
@@ -57,11 +53,20 @@ const mongooseProposalSchema = new Schema(
       type: String,
       default: null,
     },
+    cancelUser: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      default: null,
+    },
+    cancelMsg: {
+      type: String,
+      default: null,
+    },
 
     statusProposal: {
       type: String,
       default: 'pending',
-      enum: ['pending', 'reservation', 'accepted'],
+      enum: ['pending', 'reservation', 'accepted', 'cancelled', 'past'],
     },
   },
   { timestamps: true }
