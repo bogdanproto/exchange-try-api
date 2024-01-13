@@ -1,27 +1,49 @@
-const moment = require('moment');
 const { status } = require('../../consts');
 const {
   decoratorCtrl,
   proposalHandler,
   createPopulate,
   createSelector,
+  createPagination,
+  createFilter,
 } = require('../../helpers');
 const { Proposal } = require('../../models');
 
-const getAllProposalPending = async (_, res) => {
-  const currentDate = moment().endOf('day').format('YYYY-MM-DD');
+const getAllProposalPending = async (req, res) => {
+  const { page, limit, date, spot } = req.query;
 
-  const tempData = await Proposal.find({
-    statusProposal: 'pending',
-    ownerDate: { $exists: true, $gte: currentDate },
-  })
+  const pagination = createPagination({ page, limit });
+  const filterQuery = await createFilter({ date, spot });
+
+  const tempData = await Proposal.find(
+    {
+      ...filterQuery,
+      statusProposal: 'pending',
+    },
+    null,
+    pagination
+  )
+    .sort({ updatedAt: -1 })
     .populate(createPopulate('pending'))
     .select(createSelector('pending'))
     .lean();
 
-  const data = proposalHandler(tempData);
+  const proposals = proposalHandler(tempData);
 
-  res.json({ ...status.GET_SUCCESS, data });
+  const total = await Proposal.find({
+    ...filterQuery,
+    statusProposal: 'pending',
+  }).countDocuments();
+
+  res.json({
+    ...status.GET_SUCCESS,
+    data: {
+      proposals,
+      page,
+      limit,
+      total,
+    },
+  });
 };
 
 module.exports = decoratorCtrl(getAllProposalPending);
