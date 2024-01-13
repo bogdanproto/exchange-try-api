@@ -14,6 +14,9 @@ const handleArrayId = require('./common/handleArrayId');
 const proposalHandler = require('./resHandlers/proposalHandler');
 const createPopulate = require('./customPopulate/createPopulate');
 const createSelector = require('./customSelector/createSelector');
+const createPagination = require('./common/createPagination');
+const createFilter = require('./common/createFilter');
+const toCheakIsDateFuture = require('./common/toCheckIsDateFuture');
 
 module.exports = {
   HttpError,
@@ -32,4 +35,7 @@ module.exports = {
   proposalHandler,
   createPopulate,
   createSelector,
+  createPagination,
+  createFilter,
+  toCheakIsDateFuture,
 };

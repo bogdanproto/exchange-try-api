@@ -24,6 +24,9 @@ const getAllProposalByStatus = async (req, res) => {
     ownerDate: { $exists: true, $gte: currentDate },
     $or: [{ ownerId: userId }, { customerId: userId }],
   })
+    .sort({
+      ...(statusproposal === 'accepted' ? { ownerDate: 1 } : { updatedAt: -1 }),
+    })
     .populate(createPopulate('reservation'))
     .select(createSelector('reservation'))
     .lean();

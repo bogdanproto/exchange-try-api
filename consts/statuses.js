@@ -2,7 +2,6 @@ const status = {
   PUT_SUCCESS: { status: 200, message: 'Updated success' },
   MISSING_DATA: { status: 400, message: 'Bad Request' },
 
-  BAD_PARAMS: { status: 400, message: 'Params is wrong or has wrong type' },
   NOT_FOUND: { status: 404, message: 'Not Found' },
 
   // ============Mongoose================================
@@ -66,6 +65,12 @@ const status = {
   NOT_FOUND_ID: { status: 404, code: 'not_found_id', message: 'Not Found Id' },
 
   BAD_DATA: { status: 400, code: 'bad_data', message: 'Bad Request' },
+
+  BAD_PARAMS: {
+    status: 400,
+    code: 'bad_params',
+    message: 'Params is wrong or has wrong type',
+  },
 
   UNSUPPORTED_TYPE: {
     status: 415,
