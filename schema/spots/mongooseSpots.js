@@ -9,6 +9,14 @@ const mongooseSpotShema = new Schema(
       trim: true,
       required: [true, 'Set as min one spot'],
     },
+    lat: {
+      type: Number,
+      default: null,
+    },
+    lon: {
+      type: Number,
+      default: null,
+    },
   },
   { timestamps: true }
 );

@@ -1,0 +1,10 @@
+// const spotsPath = path.join(\_\_dirname, 'prepareSpots.json'); // const
+jsonSpots = await fs.readFile(spotsPath); // const parseJson =
+JSON.parse(jsonSpots);
+
+// parseJson.forEach(obj => { // delete obj.spotID; // delete obj.hasOffers; //
+delete obj.avgTemp; // delete obj.windyDays; // delete obj.photo; //
+obj.favorite = obj.favoriteCount; // delete obj.favoriteCount; // obj.spot =
+obj.name; // delete obj.name; // });
+
+// await fs.writeFile(spotsPath, JSON.stringify(parseJson, null, 2));

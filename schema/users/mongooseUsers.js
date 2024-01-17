@@ -32,7 +32,7 @@ const mongooseUserShema = new Schema(
       default: null,
     },
     experience: {
-      type: Number,
+      type: String,
       default: null,
     },
     token: {
