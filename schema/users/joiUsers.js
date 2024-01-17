@@ -1,4 +1,18 @@
 const Joi = require('joi');
+const moment = require('moment');
+
+const isDateFuture = (date, helpers) => {
+  const currentDate = moment().startOf('day');
+  const userDate = moment(date, 'YYYY-MM-DD', true);
+
+  if (!userDate.isValid()) {
+    return helpers.error('any.timebad');
+  }
+  if (userDate.isAfter(currentDate)) {
+    return helpers.error('any.timefuture');
+  }
+  return date;
+};
 
 const joiRegisterSchema = Joi.object({
   name: Joi.string().required().messages({
@@ -43,8 +57,9 @@ const joiUpdateUserSchema = Joi.object({
   phone: Joi.string().messages({
     'string.empty': 'Phone is not allowed to be empty',
   }),
-  experience: Joi.number().min(0).message({
-    'number.min': 'Experience should not be less than 0',
+  experience: Joi.string().custom(isDateFuture).messages({
+    'any.timefuture': 'experiencedate_future',
+    'any.timebad': 'experiencedate_bad_format',
   }),
 }).or('name', 'phone', 'experience');
 

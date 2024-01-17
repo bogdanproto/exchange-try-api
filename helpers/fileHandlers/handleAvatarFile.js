@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const handleAvatarFile = async (objId, file) => {
   const { path: tempPath, destination, originalname } = file;
-  console.log(file);
 
   const id = objId.toString();
 
@@ -18,7 +17,7 @@ const handleAvatarFile = async (objId, file) => {
   const avatarPath = path.join(destination, fileName);
 
   const imgOptimized = await Jimp.read(tempPath);
-  await imgOptimized.resize(250, Jimp.AUTO).writeAsync(tempPath);
+  await imgOptimized.resize(250, Jimp.AUTO).quality(60).writeAsync(tempPath);
 
   await fs.rename(tempPath, avatarPath);
 

@@ -39,6 +39,13 @@ const status = {
     message: 'Proposal doesnt have specified status ',
   },
 
+  PROPOSAL_EQPTS: {
+    status: 400,
+    code: 'proposal_reservation_accepted_has_eqpt',
+    message:
+      'Proposal with status reservation or accepted has this equipment please cancel proposal and after delete equipment',
+  },
+
   // ==================================================
   GET_SUCCESS: { status: 200, code: 'ok', message: 'OK' },
 
