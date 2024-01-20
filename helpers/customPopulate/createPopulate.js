@@ -50,6 +50,26 @@ const createPopulate = type => {
         },
       ];
     }
+    case 'notify': {
+      return [
+        {
+          path: 'initiator',
+          select: '_id name',
+        },
+        {
+          path: 'recipient',
+          select: '_id name',
+        },
+        {
+          path: 'source',
+          select: '_id spot ownerDate ownerTime',
+          populate: {
+            path: 'spot',
+            select: '_id spot',
+          },
+        },
+      ];
+    }
   }
 };
 
