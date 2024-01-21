@@ -62,7 +62,7 @@ const createPopulate = type => {
         },
         {
           path: 'source',
-          select: '_id spot ownerDate ownerTime',
+          select: '_id spot ownerDate ownerTime customerTime',
           populate: {
             path: 'spot',
             select: '_id spot',

@@ -16,6 +16,8 @@ const status = {
     message: 'Bad Request',
   },
 
+  // ============Notifys================================
+
   // ============Proposals================================
 
   PROPOSAL_RESERVATION: {

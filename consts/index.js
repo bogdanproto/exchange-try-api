@@ -6,8 +6,11 @@ const pathProposal = require('./path/pathProposal');
 const pathNotify = require('./path/pathNotify');
 const status = require('./statuses');
 const collectionDB = require('./collection');
-const { TemplateNotify } = require('./notification/templateNotify');
-const statusNotify = require('./notification/statusNotify');
+const {
+  TemplateNotify,
+  typeNotify,
+  statusNotify,
+} = require('./notification/templateNotify');
 
 module.exports = {
   pathUsers,
@@ -19,5 +22,6 @@ module.exports = {
   status,
   collectionDB,
   TemplateNotify,
+  typeNotify,
   statusNotify,
 };

@@ -1,4 +1,4 @@
-const { status, TemplateNotify } = require('../../consts');
+const { status, typeNotify } = require('../../consts');
 const {
   decoratorCtrl,
   toCheckIdInCollection,
@@ -41,7 +41,7 @@ const removeCustomerOffer = async (req, res) => {
   await Notify.create({
     initiator: customerId,
     recipient: updatedProposal.ownerId,
-    typeNotify: TemplateNotify.Type.customer_remove,
+    typeNotify: typeNotify.customer_remove,
     source: updatedProposal._id,
   });
 

@@ -1,7 +1,7 @@
 const pathNotify = {
   ROOT: '/api/notify',
   BASE: '/',
-  ID: '/:id',
+  NOTIFY_STATUS: '/:id/viewed',
 };
 
 Object.freeze(pathNotify);

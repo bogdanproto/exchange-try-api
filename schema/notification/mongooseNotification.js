@@ -15,7 +15,14 @@ const mongooseNotificationSchema = new Schema(
     typeNotify: {
       type: String,
       required: [true, 'Type of notification is required'],
-      enum: ['customer_offer', 'customer_update', 'customer_remove'],
+      enum: [
+        'customer_offer',
+        'customer_update',
+        'customer_remove',
+        'owner_status_accepted',
+        'owner_status_rejected',
+        'cancel_source',
+      ],
     },
     source: {
       type: Schema.Types.ObjectId,

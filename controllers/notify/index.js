@@ -1,3 +1,4 @@
 const getAllNotify = require('./getAllNotify');
+const updateStatusNotify = require('./updateStatusNotify');
 
-module.exports = { getAllNotify };
+module.exports = { getAllNotify, updateStatusNotify };

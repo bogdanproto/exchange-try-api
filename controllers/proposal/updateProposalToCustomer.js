@@ -1,4 +1,4 @@
-const { status, typeNotify, TemplateNotify } = require('../../consts');
+const { status, typeNotify } = require('../../consts');
 const {
   decoratorCtrl,
   proposalHandler,
@@ -38,8 +38,8 @@ const updateProposalToCustomer = async (req, res) => {
     recipient: updatedProposal.ownerId,
     typeNotify:
       statusProposal === 'pending'
-        ? TemplateNotify.Type.customer_offer
-        : TemplateNotify.Type.customer_update,
+        ? typeNotify.customer_offer
+        : typeNotify.customer_update,
     source: updatedProposal._id,
   });
 

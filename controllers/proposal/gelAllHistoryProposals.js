@@ -17,6 +17,18 @@ const gelAllHistoryProposals = async (req, res) => {
     $or: [
       {
         $and: [
+          {
+            $or: [
+              { statusProposal: 'pending' },
+              { statusProposal: 'reservation' },
+            ],
+          },
+          { ownerId: userId },
+          { ownerDate: { $exists: true, $lt: currentDate } },
+        ],
+      },
+      {
+        $and: [
           { statusProposal: 'accepted' },
           { ownerDate: { $exists: true, $lt: currentDate } },
           { $or: [{ ownerId: userId }, { customerId: userId }] },
