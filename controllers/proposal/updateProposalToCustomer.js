@@ -1,4 +1,4 @@
-const { status } = require('../../consts');
+const { status, typeNotify } = require('../../consts');
 const {
   decoratorCtrl,
   proposalHandler,
@@ -7,7 +7,7 @@ const {
   createPopulate,
   createSelector,
 } = require('../../helpers');
-const { Proposal } = require('../../models');
+const { Proposal, Notify } = require('../../models');
 
 const updateProposalToCustomer = async (req, res) => {
   const customerData = req.body;
@@ -32,6 +32,16 @@ const updateProposalToCustomer = async (req, res) => {
     .lean();
 
   const data = proposalHandler([updatedProposal]);
+
+  await Notify.create({
+    initiator: customerId,
+    recipient: updatedProposal.ownerId,
+    typeNotify:
+      statusProposal === 'pending'
+        ? typeNotify.customer_offer
+        : typeNotify.customer_update,
+    source: updatedProposal._id,
+  });
 
   res.json({ ...status.UPDATE_SUCCESS, data: data[0] });
 };

@@ -9,6 +9,7 @@ const {
   spotRouter,
   eqptRouter,
   proposalRouter,
+  notifyRouter,
 } = require('./routes/api');
 
 const {
@@ -18,6 +19,7 @@ const {
   status,
   pathEqpt,
   pathProposal,
+  pathNotify,
 } = require('./consts');
 
 const app = express();
@@ -33,6 +35,7 @@ app.use(pathProposal.ROOT, proposalRouter);
 app.use(pathSports.ROOT, sportsRouter);
 app.use(pathSpots.ROOT, spotRouter);
 app.use(pathEqpt.ROOT, eqptRouter);
+app.use(pathNotify.ROOT, notifyRouter);
 
 app.use((req, res) => {
   res.status(status.NOT_FOUND.status).json(status.NOT_FOUND);

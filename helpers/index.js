@@ -17,6 +17,7 @@ const createSelector = require('./customSelector/createSelector');
 const createPagination = require('./common/createPagination');
 const createFilter = require('./common/createFilter');
 const toCheakIsDateFuture = require('./common/toCheckIsDateFuture');
+const notifyHandler = require('./resHandlers/notifyHandler');
 
 module.exports = {
   HttpError,
@@ -38,4 +39,5 @@ module.exports = {
   createPagination,
   createFilter,
   toCheakIsDateFuture,
+  notifyHandler,
 };
