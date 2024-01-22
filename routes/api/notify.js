@@ -14,4 +14,10 @@ router.patch(
   ctrl.updateStatusNotify
 );
 
+router.patch(
+  pathNotify.NOTIFY_ALL_STATUS,
+  authenticate,
+  ctrl.updateStatusAllNotify
+);
+
 module.exports = router;
