@@ -54,7 +54,7 @@ const createPopulate = type => {
       return [
         {
           path: 'initiator',
-          select: '_id name',
+          select: '_id name avatarCloudURL',
         },
         {
           path: 'recipient',
