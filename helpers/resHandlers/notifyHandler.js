@@ -15,6 +15,7 @@ const notifyHandler = arr => {
 
       return {
         _id,
+        initiator,
         message: template.getMessage(typeNotify),
         statusNotify,
         createdAt,
